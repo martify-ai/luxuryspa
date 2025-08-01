@@ -113,12 +113,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // In a real application, you would send this data to a server
-            // For demonstration purposes, we'll just show a success message
-            alert('Thank you! Your message has been sent. We will contact you soon.');
-
-            // Reset form
-            contactForm.reset();
+            fetch('http://localhost:3000/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, phone, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                contactForm.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while sending your message. Please try again later.');
+            });
         });
     }
 
