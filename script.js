@@ -113,20 +113,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            fetch('http://localhost:3000/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, phone, message })
+            // Initialize EmailJS with your User ID
+            emailjs.init('Yn1OZx_NMefdIIyVT');
+
+            // Send the form data using EmailJS
+            emailjs.send('service_3b8loxl', 'template_ddo5a6c', {
+                from_name: name,
+                from_email: email,
+                from_phone: phone,
+                message: message
             })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Thank you! Your message has been sent. We will contact you soon.');
                 contactForm.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
+            }, function(error) {
+                console.log('FAILED...', error);
                 alert('An error occurred while sending your message. Please try again later.');
             });
         });

@@ -10,29 +10,14 @@ The frontend is built with HTML, CSS, and vanilla JavaScript.
 - `style.css`: The stylesheet for the website.
 - `script.js`: The JavaScript file that handles the form submission and other interactive features.
 
-## Backend
+## How It Works
 
-The backend is a simple Node.js server using Express.
+This project uses [EmailJS](https://www.emailjs.com/) to send emails directly from the frontend, so there is no backend required.
 
-- `server.js`: The main server file.
-- `package.json`: The project's dependencies.
+When a user fills out the contact form on the website, the frontend uses the EmailJS SDK to send the form data to a pre-configured email address. The EmailJS service is configured with the following credentials:
 
-### Running the Backend
+-   **Service ID:** `service_3b8loxl`
+-   **Template ID:** `template_ddo5a6c`
+-   **User ID:** `Yn1OZx_NMefdIIyVT`
 
-To run the backend server, follow these steps:
-
-1.  **Install the dependencies:**
-    ```bash
-    npm install
-    ```
-
-2.  **Start the server:**
-    ```bash
-    node server.js
-    ```
-
-The server will start on `http://localhost:3000`.
-
-### How It Works
-
-When a user fills out the contact form on the website, the frontend sends a POST request to the `/send` endpoint on the backend. The backend then uses Nodemailer to send an email with the form data to a pre-configured email address.
+To use this project, you will need to have an EmailJS account and configure it with your own email address.
